@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+            android:id="@+id/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/home_see_all_height"
+            android:layout_alignParentLeft="true"
+            android:visibility="gone"
+            android:ellipsize="end"
+            android:gravity="left|center"
+            android:maxLines="1"
+            android:layout_toLeftOf="@+id/btnMore"
+            android:textColor="@color/home_card_title"
+            android:textSize="@dimen/home_title_size"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:theme="@style/MyButton"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            android:text="View All"
+            android:textColor="#FFF" />
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:scrollbars="none"/>
+
+</LinearLayout>
+

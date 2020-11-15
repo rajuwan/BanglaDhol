@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_top_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginTop="?actionBarSize" >
+
+    <ImageView
+        android:id="@+id/iv_album_cover_full"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/iv_album_cover_alpha_full"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:alpha="0.9"
+        android:background="@android:color/black" />
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="300.0dip"
+        android:orientation="vertical"
+        android:paddingTop="10.0dip" >
+
+        <com.ebs.banglalinkbangladhol.others.CircularImageView
+            android:id="@+id/iv_album_cover"
+            android:layout_width="190.0dip"
+            android:layout_height="190.0dip"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
+            android:id="@+id/ll_lul"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:gravity="center" >
+
+                    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+                        android:id="@+id/tv_album_title"
+                        style="@style/ItemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="0.0dip"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:freezesText="true"
+                        android:gravity="center_horizontal"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true"
+                        android:textSize="14.0sp"
+                        android:visibility="gone" />
+
+                    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+                        android:id="@+id/tv_album_count"
+                        style="@style/ItemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/tv_album_title"
+                        android:layout_centerInParent="true"
+                        android:ellipsize="marquee"
+                        android:visibility="visible" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/item_buttons_bar" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/top"
+        android:cacheColorHint="@android:color/transparent"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
+        android:divider="@color/gaana_listview_divider"
+        android:dividerHeight="1dip"
+        android:listSelector="@drawable/queue_list_selector"
+        android:padding="4.0dip" />
+
+</RelativeLayout>

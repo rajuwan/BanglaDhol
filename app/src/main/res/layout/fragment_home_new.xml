@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.gms.ads.NativeExpressAdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        ads:adUnitId="@string/ad_unit_home"
+        android:layout_marginBottom="5dp"
+        ads:adSize="FULL_WIDTHx80"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/adView">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/splashHomeProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

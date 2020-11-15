@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+        android:id="@+id/module_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/home_see_all_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:ellipsize="end"
+        android:gravity="left|center"
+        android:paddingLeft="@dimen/home_vertical_space"
+        android:singleLine="true"
+        android:text="New Releases"
+        android:textColor="@color/home_title"
+        android:textSize="@dimen/home_title_size"
+        android:textStyle="bold" />
+
+    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+        android:id="@+id/tv_card_list_see_all"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/home_see_all_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:drawableRight="@drawable/ic_seeall_arrow"
+        android:gravity="right|center"
+        android:paddingRight="@dimen/home_vertical_space"
+        android:text="@string/see_all"
+        android:textColor="@color/selector_home_see_all"
+        android:textSize="@dimen/home_see_all_size" />
+
+    <org.lucasr.twowayview.TwoWayView
+        android:id="@+id/horizontal_list"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/home_card_height"
+        android:layout_below="@id/module_title"
+        android:listSelector="@android:color/transparent"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/home_vertical_space"
+        android:paddingRight="@dimen/home_vertical_space"
+        android:scrollbars="none" />
+
+</RelativeLayout>

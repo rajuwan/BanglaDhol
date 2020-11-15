@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/ADFProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/top"
+        android:cacheColorHint="@android:color/transparent"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
+        android:scrollbars="none"
+        android:divider="@color/black_text"
+        android:layout_marginBottom="60dp"
+        android:dividerHeight="0.8dip"
+        android:padding="0.0dip" />
+
+</RelativeLayout>

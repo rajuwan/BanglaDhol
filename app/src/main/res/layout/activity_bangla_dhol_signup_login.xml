@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/sign_in_bg"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:paddingTop="20.0dip" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:splitMotionEvents="false" >
+
+            <!-- Top Logo Fixed -->
+
+            <ImageView
+                android:id="@+id/bflixIcon"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/sign_in_icon" />
+
+            <ImageView
+                android:id="@+id/bflixlogo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:src="@drawable/action_bar_logo" />
+
+            <!-- Top login | signup Fixed -->
+
+            <RelativeLayout
+                android:id="@+id/llParentChoose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5.0dip"
+                android:layout_marginTop="10.0dip"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/tv_LogIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="Log In"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="1.5dip"
+                    android:layout_height="15.0dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:layout_toRightOf="@id/tv_LogIn"
+                    android:background="#fff" />
+
+                <TextView
+                    android:id="@+id/tv_SignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/divider"
+                    android:clickable="true"
+                    android:text="Sign up"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <!-- Top MOBILE NUMBER Fixed -->
+
+            <RelativeLayout
+                android:id="@+id/llParentEmailOnly"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:visibility="visible" >
+
+                <RelativeLayout
+                    android:id="@+id/emailbackview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/grid_single_line_bar_height"
+                    android:layout_marginLeft="@dimen/et_btn_margin"
+                    android:layout_marginRight="@dimen/et_btn_margin"
+                    android:layout_marginTop="@dimen/et_btn_margin"
+                    android:background="@drawable/rounded_corner_editext"
+                    android:gravity="center_vertical"
+                    android:visibility="visible" >
+
+                    <EditText
+                        android:id="@+id/edtTxtMobileNumber4"
+                        style="@style/setting_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/grid_single_line_bar_height"
+                        android:background="@android:color/transparent"
+                        android:ellipsize="end"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:focusable="false"
+                        android:maxLines="1"
+                        android:text="8801"
+                        android:textColorHint="@color/year"
+                        android:textCursorDrawable="@null" />
+
+                    <EditText
+                        android:id="@+id/edtTxtMobileNumber"
+                        style="@style/setting_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/grid_single_line_bar_height"
+                        android:layout_toLeftOf="@+id/btnEmailVerify"
+                        android:layout_toRightOf="@+id/edtTxtMobileNumber4"
+                        android:background="@android:color/transparent"
+                        android:ellipsize="end"
+                        android:maxLength="9"
+                        android:hint="@string/user_msisdn_hint"
+                        android:imeActionLabel="Submit"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="5.0dip"
+                        android:maxLines="1"
+                        android:textColorHint="@color/year"
+                        android:textCursorDrawable="@null" >
+
+                        <requestFocus />
+                    </EditText>
+
+                    <ImageView
+                        android:id="@+id/btnEmailVerify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/grid_single_line_bar_height"
+                        android:layout_alignBottom="@+id/edtTxtMobileNumber"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/grid_line_padding_half"
+                        android:layout_marginRight="@dimen/grid_line_padding_half"
+                        android:clickable="true"
+                        android:src="@drawable/email_login_button_new"
+                        android:visibility="visible" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <!-- Login Password -->
+
+            <LinearLayout
+                android:id="@+id/llParentEmailPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <EditText
+                    android:id="@+id/editTxtPassword"
+                    style="@style/setting_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/grid_single_line_bar_height"
+                    android:layout_marginLeft="@dimen/et_btn_margin"
+                    android:layout_marginRight="@dimen/et_btn_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/rounded_corner_editext"
+                    android:hint="@string/user_password_hint"
+                    android:imeActionLabel="Submit"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberPassword"
+                    android:padding="8.0dip"
+                    android:maxLines="1"
+                    android:textColorHint="@color/year"
+                    android:textCursorDrawable="@null"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/underlinedtext"
+                    style="@style/setting_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:padding="@dimen/grid_line_padding"
+                    android:text="@string/forget_password"
+                    android:textColor="@drawable/first_line_selector_tap" />
+
+                <TextView
+                    style="@style/setting_text_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:text="If you are a registered user of Bangla Dhol"
+                    android:textColor="@color/item_header_color" />
+
+                <TextView
+                    style="@style/setting_text_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="our Website (www.banglalinkdhol.com)"
+                    android:textColor="@color/item_header_color" />
+
+                <TextView
+                    style="@style/setting_text_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Please use the same credentials"
+                    android:textColor="@color/item_header_color" />
+
+                <TextView
+                    style="@style/setting_text_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="to sign into Bangla Dhol App"
+                    android:textColor="@color/item_header_color" />
+
+                <TextView
+                    android:id="@+id/btnBFlixLogin"
+                    style="@style/orange_button_style"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/grid_single_line_bar_height"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/et_btn_margin"
+                    android:layout_marginRight="@dimen/et_btn_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/red_button_selector"
+                    android:text="SUBMIT"
+                    android:visibility="visible" />
+            </LinearLayout>
+            <!-- signup confirm button -->
+
+            <LinearLayout
+                android:id="@+id/llParentSignUpConfirm"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    style="@style/setting_text_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:text="Dear User Please use valid Banglalink number"
+                    android:textColor="@color/item_header_color" />
+
+                <TextView
+                    style="@style/setting_text_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="for SignUp into Bangla Dhol App"
+                    android:textColor="@color/item_header_color" />
+
+                <TextView
+                    android:id="@+id/btnBlBdholSignUp"
+                    style="@style/orange_button_style"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/grid_single_line_bar_height"
+                    android:layout_marginLeft="@dimen/et_btn_margin"
+                    android:layout_marginRight="@dimen/et_btn_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/red_button_selector"
+                    android:text="Confirm"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

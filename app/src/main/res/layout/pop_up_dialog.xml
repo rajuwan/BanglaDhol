@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="62.0dip"
+    android:background="#000000" >
+
+    <View
+        android:id="@+id/view_bg"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/item_two_line_bar_height"
+        android:background="#141414" />
+
+    <ImageView
+        android:id="@+id/thumb"
+        android:layout_width="@dimen/view_item_image_size_two_line"
+        android:layout_height="@dimen/view_item_image_size_two_line"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/view_item_image_margin_topbottom"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/view_item_image_margin_topbottom"
+        android:src="@drawable/no_img" />
+
+    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+        android:id="@+id/trackname"
+        style="@style/sidebar_selected"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/item_two_line_bar_height_half"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_toRightOf="@+id/thumb"
+        android:gravity="bottom|left|center"
+        android:singleLine="true"
+        android:textColor="@color/first_line_color" />
+
+    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+        android:id="@+id/artist"
+        style="@style/list_download_item_first_line"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/item_two_line_bar_height_half"
+        android:layout_below="@+id/trackname"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_toRightOf="@+id/thumb"
+        android:ellipsize="end"
+        android:gravity="top|left|center"
+        android:singleLine="true"
+        android:textColor="@color/second_line_color"
+        android:visibility="visible" />
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/card_bg">
+
+        <ImageView
+            android:id="@+id/thumb"
+            android:layout_width="@dimen/view_item_image_size_two_line"
+            android:layout_height="@dimen/view_item_image_size_two_line"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:src="@drawable/no_img" />
+
+        <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+            android:id="@+id/trackname"
+            style="@style/sidebar_selected"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/item_two_line_bar_height_half"
+            android:layout_marginTop="5dp"
+            android:ellipsize="marquee"
+            android:layout_toRightOf="@+id/thumb"
+            android:gravity="left|center"
+            android:singleLine="true"
+            android:textColor="@color/first_line_color" />
+
+        <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+            android:id="@+id/artist"
+            style="@style/list_download_item_first_line"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/item_two_line_bar_height_half"
+            android:layout_below="@+id/trackname"
+            android:layout_toRightOf="@+id/thumb"
+            android:ellipsize="marquee"
+            android:gravity="top|left|center"
+            android:singleLine="true"
+            android:textColor="@color/second_line_color"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/custom_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/card_bg"
+        android:layout_below="@+id/main"
+        android:cacheColorHint="@android:color/transparent"
+        android:choiceMode="singleChoice"
+        android:clickable="true"
+        android:padding="1.0dip"
+        android:scrollbars="none"
+        android:smoothScrollbar="true" />
+</RelativeLayout>

@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/splashHomeProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/Subscription_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10.0dip"
+        android:visibility="visible">
+
+        <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+            android:id="@+id/tv_subscriptionText"
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:freezesText="true"
+            android:gravity="center_horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="#000000" />
+    </RelativeLayout>
+
+    <com.ebs.banglalinkbangladhol.others.SlidingScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/Subscription_Layout"
+        android:fadeScrollbars="true"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+            <ImageView
+                android:id="@+id/promoBanner"
+                android:layout_width="match_parent"
+                android:layout_height="65dip"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="5dip"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/content_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="5dp"
+                android:layout_below="@+id/promoBanner"
+                android:layout_alignParentTop="false" />
+
+            <!-- 1.Sub Category Recently Played -->
+
+            <TextView
+                android:id="@+id/title_recently_played"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/content_frame"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_recently_played_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="false"
+                android:layout_below="@id/content_frame"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone" />
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/recently_played_listview"
+                android:layout_width="fill_parent"
+                android:visibility="gone"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_recently_played"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none" />
+            
+            <!-- 2.Sub Category New Release -->
+
+            <TextView
+                android:id="@+id/title_newrelease"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/recently_played_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_new_release_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="false"
+                android:layout_below="@id/recently_played_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone" />
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/newrelease_listview"
+                android:layout_width="fill_parent"
+                android:visibility="gone"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_newrelease"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none" />
+
+            <!-- 3. Sub Category Top Albums -->
+
+            <TextView
+                android:id="@+id/title_albums"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/newrelease_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_albums_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/newrelease_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone" />
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/albums_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_albums"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none"
+                android:visibility="gone"/>
+
+            <!-- 10. Sub Category Top Playlist -->
+
+            <TextView
+                android:id="@+id/title_playlist"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/albums_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_playlist_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/albums_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone" />
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/playlist_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_playlist"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none"
+                android:visibility="gone"/>
+
+            <!-- 4.Sub Category Pop Modern -->
+
+            <TextView
+                android:id="@+id/title_popmodern"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/playlist_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_popmodern_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height= "wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/playlist_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone" />
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/popmodern_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_popmodern"
+                android:visibility="gone"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none" />
+
+            <!-- 5.Sub Catagory Movie Song -->
+
+            <TextView
+                android:id="@+id/title_moviesong"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/popmodern_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold"   />
+
+            <TextView
+                android:id="@+id/home_moviesong_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/popmodern_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone" />
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/moviesong_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_moviesong"
+                android:visibility="gone"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none" />
+
+            <!-- 6. Sub Category Folk -->
+
+            <TextView
+                android:id="@+id/title_folk"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/moviesong_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/home_folk_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/moviesong_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone" />
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/folk_listview"
+                android:layout_width="fill_parent"
+                android:visibility="gone"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_folk"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none" />
+
+            <!-- 7. Sub Catagory Classical-->
+
+            <TextView
+                android:id="@+id/title_classical"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/folk_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/home_classical_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/folk_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone"/>
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/classical_listview"
+                android:layout_width="fill_parent"
+                android:visibility="gone"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_classical"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none" />
+
+            <!-- 8. Sub Catagory All Time Hit -->
+
+            <TextView
+                android:id="@+id/title_alltimehit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/classical_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_alltimehit_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/classical_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone"/>
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/alltimehit_listview"
+                android:layout_width="fill_parent"
+                android:visibility="gone"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_alltimehit"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:scrollbars="none" />
+
+            <!-- 9. Sub Catagory Band -->
+
+            <TextView
+                android:id="@+id/title_band"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/home_see_all_height"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/alltimehit_listview"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:maxLines="1"
+                android:textColor="@color/black_text"
+                android:textSize="@dimen/home_title_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/home_band_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_view_all"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/alltimehit_listview"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/see_all"
+                android:textColor="@color/selector_home_see_all"
+                android:textSize="@dimen/home_see_all_size"
+                android:visibility="gone"/>
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/band_listview"
+                android:layout_width="fill_parent"
+                android:visibility="gone"
+                android:layout_height="@dimen/home_card_height"
+                android:layout_below="@id/title_band"
+                android:listSelector="@android:color/transparent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/home_vertical_space"
+                android:paddingTop="@dimen/home_vertical_space_half"
+                android:layout_marginBottom="68dp"
+                android:scrollbars="none" />
+
+        </RelativeLayout>
+    </com.ebs.banglalinkbangladhol.others.SlidingScrollView>
+
+</RelativeLayout>

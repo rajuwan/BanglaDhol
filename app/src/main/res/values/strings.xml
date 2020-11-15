@@ -1,0 +1,141 @@
+<resources>
+    <string name="app_name">Bangla Dhol</string>
+    <string name="banglalink">Banglalink</string>
+    <string name="facebook_app_id">950522301658766</string>
+    <string name="ad_unit_home">ca-app-pub-3940256099942544/2793859312</string>
+    <string name="ad_unit_player">ca-app-pub-3940256099942544/2793859312</string>
+    <string name="ad_unit_seeall">ca-app-pub-3940256099942544/2793859312</string>
+
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="cover_art">Cover art</string>
+    <string name="unknown">unknown</string>
+    <string name="search_hint">Search Bangla Dhol</string>
+    <string name="search">Titles, album &amp; artist</string>
+    <string name="add_to_list">Add to My List</string>
+    <string name="remove_from_list">Remove from My List</string>
+    <string name="video_comment"><u>Click to Comment     </u></string>
+    <string name="user_msisdn_hint">enter mobile number</string>
+    <string name="user_blink_msisdn_hint">enter valid Banglalink number</string>
+    <string name="user_password_hint">enter your password</string>
+    <string name="forget_password"><u>Forgot password?</u></string>
+    <string name="forget_text">Please enter your registered mobile number. You will get the password in the SMS Inbox</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_playlist_clear">Clear All</string>
+    <string name="menu_home">Home</string>
+    <string name="about">About</string>
+    <string name="unsub">UnSubscribe</string>
+    <string name="exit">Exit</string>
+    <string name="clear_search">Clear search</string>
+    <string name="action_hide">Hide Panel</string>
+    <string name="action_show">Show Panel</string>
+    <string name="action_anchor_enable">Enable Anchor Point</string>
+    <string name="action_anchor_disable">Disable Anchor Point</string>
+    <string name="hello"><![CDATA[<b>The Awesome Sliding Up Panel</b><br/> Brought to you by<br/><a href="http://umanoapp.com">http://umanoapp.com</a>]]></string>
+    <string name="follow"><![CDATA[Follow us<br/>on <a href="http://twitter.com/umanoapp">Twitter</a>]]></string>
+    <string name="song_image">Song artwork</string>
+    <string name="see_all">View All</string>
+    <string name="download_all">Download All</string>
+    <string name="play_all">PLAY ALL</string>
+    <string name="login_text_first_screen">Sign up to personalize your Bangla Dhol</string>
+    <string name="app_id">950522301658766</string>
+    <string name="home_newrelease">New Release</string>
+    <string name="home_albums">Albums</string>
+    <string name="home_modern">Modern</string>
+    <string name="home_moviesong">Movie Song</string>
+    <string name="home_folk">Folk</string>
+    <string name="home_classical">Classical</string>
+    <string name="home_alltimehit">All Time Hit</string>
+    <string name="home_band">Band</string>
+    <string name="home_instrumental">Instrumental</string>
+    <string name="home_poem">Poem</string>
+    <string name="home_playlists">Top Playlists</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="info1">Swoon in to the never-ending charm of Bangla music with Bangla Dhol!</string>
+    <string name="info2">Banglalink brings you a subscription based streaming app called Bangla Dhol, with a lavish collection of thousands of Bangla songs on your finger tip. From classical hits to latest unreleased songs, from the most popular bands to our renowned artists, Bangla Dhol is a one-stop hub to stream your favorite Bangla songs. Let the music flow and start something new!</string>
+    <string name="info3">Copyright © 2015</string>
+    <string name="help1">Welcome to Bangla Dhol!</string>
+    <!-- 17.77/7days (SD+VAT) with free 15MB\n -->
+    <string name="help2">The Service charges:\n\n59.23/30days (SD+VAT) with free 50MB\n2.37/1day (SD+VAT) with free 2MB\n\nTo Activate Type START &amp; send to 9494\nTo Deactivate Type STOP &amp; send to 9494\nOr\nDial *9494#\n</string>
+    <string name="help3">Auto-renewal is applicable to this service.</string>
+    <string name="title_activity_main">Push Notifications</string>
+    <string name="error_config">Please set the %1$s constant and recompile the app.</string>
+    <string name="already_registered">Device is already registered on server.</string>
+    <string name="gcm_registered">From GCM: device successfully registered!</string>
+    <string name="gcm_unregistered">From GCM: device successfully unregistered!</string>
+    <string name="gcm_message">From GCM: you got message!</string>
+    <string name="gcm_error">From GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error">From GCM: recoverable error (%1$s).</string>
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+    <string name="server_registering">Trying (attempt %1$d/%2$d) to register device on Demo Server.</string>
+    <string name="server_registered">From Demo Server: successfully added device!</string>
+    <string name="server_unregistered">From Demo Server: successfully removed device!</string>
+    <string name="server_register_error">Could not register device on Demo Server after %1$d attempts.</string>
+    <string name="server_unregister_error">Could not unregister device on Demo Server (%1$s).</string>
+    <string name="options_register">Register</string>
+    <string name="options_unregister">Unregister</string>
+    <string name="options_clear">Clear</string>
+    <string name="options_exit">Exit</string>
+    <string name="product_name">Product Name</string>
+    <string name="txt_image_slider">Image Slideshow</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="time_out">Time Out</string>
+    <string name="error_occured">Error Occurred</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Albums</item>
+        <item>Info</item>
+        <item>Subscribe</item>
+        <item>Playlist</item>
+        <item>Feedback</item>
+        <item>Exit</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_albums</item>
+        <item>@drawable/ic_info</item>
+        <item>@drawable/ic_sub</item>
+        <item>@drawable/ic_playlist</item>
+        <item>@drawable/ic_feedback</item>
+        <item>@drawable/ic_exit</item>
+    </array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_tab">TabActivity</string>
+
+    <string name="one">ONE</string>
+    <string name="eight">EIGHT</string>
+    <string name="five">FIVE</string>
+    <string name="four">FOUR</string>
+    <string name="nine">NINE</string>
+    <string name="seven">SEVEN</string>
+    <string name="six">SIX</string>
+    <string name="ten">TEN</string>
+    <string name="three">THREE</string>
+    <string name="two">TWO</string>
+    <string name="title_activity_scrollable_tabs">Scrollable Tabs</string>
+    <string name="title_activity_simple_tabs">Simple Tabs</string>
+    <string name="btn_simple_tabs">Simple Tabs</string>
+    <string name="btn_scrollable_tabs">Scrollable Tabs</string>
+    <string name="btn_icon_text_tabs">Icon &amp; Text Tabs</string>
+    <string name="btn_icon_tabs">Only Icon Tabs</string>
+    <string name="btn_pinned_top_tabs">Pinned To Top Tabs</string>
+    <string name="title_activity_icon_text_tabs">Icon and Text Tabs</string>
+    <string name="title_activity_icon_tabs">Icon Tabs</string>
+    <string name="btn_custom_icon_tabs">Custom View Icon &amp; Text</string>
+    <string name="title_activity_custom_view_icon_text_tabs">Custom View Icon &amp; Text</string>
+    <string name="title_activity_pinned_top_tabs">Pin Top Tabs</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_test">TestActivity</string>
+</resources>

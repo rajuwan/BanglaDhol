@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="10.0dip" >
+
+    <ImageView
+        android:id="@+id/iv_playlist_image"
+        android:layout_width="52.0dip"
+        android:layout_height="52.0dip"
+        android:gravity="center_vertical"
+        android:src="@drawable/no_img" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10.0dip"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+                android:id="@+id/tvSongName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:gravity="center_horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingTop="6.0dip"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@color/card_bg"
+                android:textSize="18.0sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="2.0dip" >
+
+                <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+                    android:id="@+id/tvArtistName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/year"
+                    android:textSize="15.0sp" />
+
+                <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+                    android:id="@+id/tvAlbumName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/year"
+                    android:textSize="15.0sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+            android:id="@+id/playlist_item_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:singleLine="true"
+            android:textColor="#f2f2f2"
+            android:textSize="15.0sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?actionBarSize"
+    android:background="#f1f1f1"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="100.0dip" >
+
+        <ImageView
+            android:id="@+id/iv_item_image"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/iv_item_image_alpha"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:alpha="1.0"
+            android:background="@drawable/drawer_top_bg" />
+
+        <LinearLayout
+            android:id="@+id/ll_lul"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10.0dip"
+                    android:layout_marginRight="10.0dip"
+                    android:gravity="center" >
+
+                    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+                        android:id="@+id/tv_item_subtitle"
+                        style="@style/ItemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="0.0dip"
+                        android:maxLines="1"
+                        android:textSize="14.0sp" />
+
+                    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+                        android:id="@+id/tv_item_title"
+                        style="@style/ItemTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/tv_item_subtitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="5.0dip"
+                        android:ellipsize="marquee"
+                        android:visibility="visible" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/videoGridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top"
+        android:layout_margin="5dip"
+        android:columnWidth="160dip"
+        android:drawSelectorOnTop="true"
+        android:gravity="center_horizontal"
+        android:horizontalSpacing="0dip"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dip" />
+
+</RelativeLayout>

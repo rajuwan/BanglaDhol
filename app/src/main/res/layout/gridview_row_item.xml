@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ViewItem"
+    android:layout_width="160.0dip"
+    android:layout_height="195.0dip"
+    android:descendantFocusability="blocksDescendants" >
+
+    <RelativeLayout
+        android:layout_width="160.0dip"
+        android:layout_height="195.0dip" >
+
+        <ImageView
+            android:id="@+id/gridImage"
+            android:layout_width="160dip"
+            android:layout_height="160dip"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_img" />
+
+        <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+            android:id="@+id/gridText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_text_height"
+            android:layout_below="@+id/gridImage"
+            android:background="@drawable/selector_card_bg"
+            android:ellipsize="end"
+            android:gravity="left|center"
+            android:includeFontPadding="false"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:singleLine="true"
+            android:textColor="@color/home_card_title"
+            android:textSize="@dimen/home_card_title_size" />
+
+        <ImageView
+            android:id="@+id/iv_song_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/gridText"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

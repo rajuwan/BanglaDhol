@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dip" >
+
+    <ProgressBar
+        android:id="@+id/splashAlbumProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
+    <GridView
+        android:id="@+id/gridview_album"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:paddingBottom="58dp"
+        android:columnWidth="160dip"
+        android:drawSelectorOnTop="true"
+        android:gravity="center_horizontal"
+        android:horizontalSpacing="10dip"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dip" />
+
+</RelativeLayout>

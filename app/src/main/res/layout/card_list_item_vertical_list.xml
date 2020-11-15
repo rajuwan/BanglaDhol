@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardUseCompatPadding="true"
+    android:descendantFocusability="blocksDescendants">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_card_image"
+            android:layout_width="130.0dip"
+            android:layout_height="130.0dip"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_img" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_toRightOf="@+id/iv_card_image"
+            android:gravity="center|left"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedBoldTextView
+                android:id="@+id/tv_card_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="left|center"
+                android:includeFontPadding="false"
+                android:paddingLeft="4.0dip"
+                android:maxLines="1"
+                android:textColor="#f2f2f2"
+                android:textSize="18sp" />
+
+            <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedBoldTextView
+                android:id="@+id/tv_card_artist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5.0dip"
+                android:layout_below="@id/tv_card_title"
+                android:ellipsize="end"
+                android:gravity="left|center"
+                android:includeFontPadding="false"
+                android:paddingLeft="4.0dip"
+                android:maxLines="1"
+                android:textColor="@color/counter_text_color"
+                android:textSize="16sp" />
+
+            <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedBoldTextView
+                android:id="@+id/tv_card_cp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_card_artist"
+                android:ellipsize="end"
+                android:gravity="left|center"
+                android:includeFontPadding="false"
+                android:paddingLeft="4.0dip"
+                android:paddingTop="5.0dip"
+                android:maxLines="1"
+                android:textColor="@color/counter_text_color"
+                android:textSize="16sp" />
+
+            <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedBoldTextView
+                android:id="@+id/tv_card_release"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_card_cp"
+                android:ellipsize="end"
+                android:gravity="left|center"
+                android:includeFontPadding="false"
+                android:paddingLeft="4.0dip"
+                android:paddingTop="5.0dip"
+                android:maxLines="1"
+                android:textColor="@color/counter_text_color"
+                android:textSize="16sp" />
+
+            <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedBoldTextView
+                android:id="@+id/tv_card_songs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_card_release"
+                android:ellipsize="end"
+                android:gravity="left|center"
+                android:includeFontPadding="false"
+                android:paddingLeft="4.0dip"
+                android:paddingTop="5.0dip"
+                android:maxLines="1"
+                android:textColor="@color/counter_text_color"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

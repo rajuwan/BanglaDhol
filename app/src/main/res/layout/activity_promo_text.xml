@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    android:padding="10dip" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" >
+
+        <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+            android:id="@+id/promo_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#F6470E" />
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/promoProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+    </ProgressBar>
+
+</RelativeLayout>

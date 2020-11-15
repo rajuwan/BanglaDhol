@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:crossfade="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/item_two_line_bar_height"
+    android:layout_alignParentTop="true"
+    android:background="@drawable/selector_btn_global_bg_grey" >
+
+    <View
+        android:id="@+id/horzontalLIne"
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@color/gaana_listview_divider" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/item_two_line_bar_height_half"
+        android:layout_toLeftOf="@+id/watchVideo" />
+
+    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+        android:id="@+id/tvSongName"
+        style="@style/list_download_item_first_line"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/item_two_line_bar_height_half"
+        android:layout_toLeftOf="@+id/watchVideo"
+        android:ellipsize="end"
+        android:gravity="bottom|left|center"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:singleLine="true" />
+
+    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+        android:id="@+id/tvAlbumName"
+        style="@style/list_download_item_second_line"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/item_two_line_bar_height_half"
+        android:layout_below="@id/tvSongName"
+        android:layout_toLeftOf="@+id/watchVideo"
+        android:ellipsize="end"
+        android:gravity="top|left|center"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:singleLine="true" />
+
+    <ImageView
+        android:id="@+id/watchVideo"
+        android:layout_width="@dimen/view_item_favorite_size"
+        android:layout_height="@dimen/item_two_line_bar_height"
+        android:layout_gravity="center"
+        android:layout_toLeftOf="@+id/favBtnSongView"
+        android:background="@drawable/selector_btn_global"
+        android:padding="3.0dip"
+        android:src="@drawable/button_video"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/favBtnSongView"
+        android:layout_width="@dimen/view_item_favorite_size"
+        android:layout_height="@dimen/item_two_line_bar_height"
+        android:layout_toLeftOf="@+id/watchVideo"
+        android:background="@drawable/selector_btn_global"
+        android:paddingBottom="5.0dip"
+        android:paddingTop="5.0dip"
+        android:scaleType="center"
+        android:src="@drawable/download_button_paused"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/favPrgSongView"
+        style="@android:style/Widget.ProgressBar.Small.Inverse"
+        android:layout_width="@dimen/view_item_download_size"
+        android:layout_height="@dimen/view_item_download_size"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="1.0dip"
+        android:layout_toLeftOf="@id/watchVideo"
+        android:padding="@dimen/progress_bar_padding"
+        android:visibility="invisible" />
+
+    <View
+        android:id="@+id/vLine"
+        android:layout_width="0.0dip"
+        android:layout_height="@dimen/item_two_line_bar_height"
+        android:layout_toLeftOf="@id/watchVideo" />
+
+    <View
+        android:id="@+id/clickoptionLayout"
+        android:layout_width="@dimen/view_item_favorite_size"
+        android:layout_height="@dimen/item_two_line_bar_height"
+        android:layout_alignLeft="@id/vLine"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="1.0dip"
+        android:background="@drawable/selector_btn_global"
+        android:clickable="true"
+        android:visibility="gone" />
+
+    <com.ebs.banglalinkbangladhol.typefacedviews.TypefacedTextView
+        android:id="@+id/playlist_item_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="right|center"
+        android:visibility="visible"
+        android:singleLine="true"
+        android:textColor="#f2f2f2"
+        android:textSize="12.0sp" />
+
+</RelativeLayout>

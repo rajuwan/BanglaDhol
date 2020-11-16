@@ -6,6 +6,10 @@ class Constant {
         const val Horizontal_Item_Decoration_Space = 26
 
 
+        const val OTP_SEND = "bangladhol_send_otp.php"
+        const val OTP_CHECK = "bangladhol_verify_otp.php"
+
+
         const val BASE_URL = " https://banglalinkdhol.com/v2/"
         const val API_BASE_URL = "https://robiscreen.com/api/"
 

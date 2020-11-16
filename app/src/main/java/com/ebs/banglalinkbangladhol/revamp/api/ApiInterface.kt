@@ -2,6 +2,7 @@ package com.ebs.banglalinkbangladhol.revamp.api
 
 
 import com.ebs.banglalinkbangladhol.revamp.Constant
+import com.ebs.banglalinkbangladhol.revamp.api.response.OtpResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -123,16 +124,21 @@ interface ApiInterface {
         @Field("comment") comment : String
     ): Call<Any>
 
-    // add to comment
+    // SEND OTP
     @FormUrlEncoded
-    @POST(Constant.MY_RATING)
-    fun addRating(
-        @Field("contentid") myval : String,
-        @Field("username") msisdn : String,
-        @Field("rating") rating : String,
-        @Field("deviceid") deviceid : String
-    ): Call<Any>
+    @POST(Constant.OTP_SEND)
+    fun sendOtp(
+        @Field("msisdn") msisdn : String,
+        @Field("src") src : String
+    ): Call<OtpResponse>
 
+    // Check OTP
+    @FormUrlEncoded
+    @POST(Constant.OTP_CHECK)
+    fun verifyOtp(
+        @Field("msisdn") msisdn : String,
+        @Field("otp") otp : String
+    ): Call<OtpResponse>
 
 
     // Feedback

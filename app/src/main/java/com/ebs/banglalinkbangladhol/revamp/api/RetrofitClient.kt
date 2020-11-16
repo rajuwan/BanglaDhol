@@ -2,8 +2,7 @@ package com.ebs.banglalinkbangladhol.revamp.api
 
 import android.content.Context
 import androidx.annotation.NonNull
-import com.ebs.banglalinkbangladhol.others.HTTPGateway.BASE_URL
-import com.ebs.banglalinkbangladhol.revamp.Constant
+import com.ebs.banglalinkbangladhol.others.HTTPGateway
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,15 +19,11 @@ class RetrofitClient(appContext : Context) {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val okHttpClient = OkHttpClient.Builder()
-// .connectTimeout(30, TimeUnit.SECONDS)
-// .readTimeout(30, TimeUnit.SECONDS)
-// .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(interceptor)
             .build()
 
         retrofit = Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
-//.baseUrl(Constant.API_BASE_URL)
+            .baseUrl(HTTPGateway.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

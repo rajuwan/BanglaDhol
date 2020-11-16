@@ -21,17 +21,20 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.view.LayoutInflaterFactory;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
 import java.util.Set;
 
+import com.chaos.view.PinView;
 import com.ebs.banglalinkbangladhol.R;
 import com.ebs.banglalinkbangladhol.activity.BanglaDholSignUpLogInActivity;
 import com.ebs.banglalinkbangladhol.bean.SubJson;
@@ -40,6 +43,14 @@ import com.ebs.banglalinkbangladhol.json.SubJsonReader;
 import com.ebs.banglalinkbangladhol.others.CheckUserInfo;
 import com.ebs.banglalinkbangladhol.others.HTTPGateway;
 import com.ebs.banglalinkbangladhol.others.ServerUtilities;
+import com.ebs.banglalinkbangladhol.revamp.api.ApiInterface;
+import com.ebs.banglalinkbangladhol.revamp.api.RetrofitClient;
+import com.ebs.banglalinkbangladhol.revamp.api.response.OtpResponse;
+import com.google.android.material.button.MaterialButton;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SubscriptionFragment extends Fragment {
 
@@ -63,7 +74,7 @@ public class SubscriptionFragment extends Fragment {
 	private String val_sdp = null;
 	private String sdp_url = "";
 	private List<SubJson> jsonSdp;
-
+	private ApiInterface apiInterface;
 	private AlertDialog alertDialog = null;
 	public AsyncTask<Void, Void, String> mRegisterTask;
 	private String isChargeSuccess, serviceid, referenceId = "";
@@ -74,6 +85,8 @@ public class SubscriptionFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View view = inflater.inflate(R.layout.fragment_subscription, container, false);
+
+		apiInterface = RetrofitClient.Companion.getInstance(getActivity()).getAPi();
 
 		userStatus = (TextView) view.findViewById(R.id.tv_sub_head);
 		list = (ListView) view.findViewById(android.R.id.list);
@@ -448,35 +461,102 @@ public class SubscriptionFragment extends Fragment {
 	Handler datausercheck_handler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
-
 			pd.dismiss();
-
 			try {
-
 				if(CheckUserInfo.getMsisdnFromServer().contains("yes")){
 
-					requestForSdpUrl();
+					/** For BD rules, OTP implemented at end of 2020
+					 * send & check OTP before requestForSdpUrl() calling
+					 * ---------------- OTP  --------------- */
 
+					// requestForSdpUrl(); // to bypass OTP system, execute this fun
+
+					apiInterface.sendOtp(CheckUserInfo.getUserMsisdn(), "android").enqueue(new retrofit2.Callback<OtpResponse>() {
+						@Override
+						public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
+							if (response.body().getStatus().equals("success")){
+								sentOtpPopup(response.body().getMessage());
+							} else {
+								Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+							}
+						}
+
+						@Override
+						public void onFailure(Call<OtpResponse> call, Throwable t) {
+							Toast.makeText(getActivity(), "Please try again later", Toast.LENGTH_SHORT).show();
+						}
+					});
 				} else {
-
 					DataRequiredDialog();
-
 				}
 
 			} catch (Exception e) {
-
 				Log.d("Tag", "Error while get from signup");
-
 			}
-
 		}
 
 	};
 
+	private void sentOtpPopup(String msg) {
+		// on OK click, pop the PIN_VIEW and then call requestForSdpUrl()
+		LayoutInflater inflater = LayoutInflater.from(getActivity());
+		View dialogView = inflater.inflate(R.layout.dailog_otp_sent, null);
+		AlertDialog dialog = new AlertDialog.Builder(getActivity()).create();
+		dialog.setCancelable(false);
+		dialog.setView(dialogView);
+
+		TextView userMessage = dialogView.findViewById(R.id.textView2);
+		MaterialButton pinOkBtn = dialogView.findViewById(R.id.pinLoginBtn);
+		userMessage.setText(msg);
+
+		pinOkBtn.setOnClickListener(view -> {
+			dialog.cancel();
+			checkOtp();
+		});
+		dialog.show();
+	} // sendOtp
+
+	private void checkOtp() {
+		LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+		View pinDialogView  = layoutInflater.inflate(R.layout.dailog_otp_check, null);
+		AlertDialog pinDialog = new AlertDialog.Builder(getActivity()).create();
+		pinDialog.setCancelable(false);
+		pinDialog.setView(pinDialogView);
+
+		PinView myPinView = pinDialogView.findViewById(R.id.pinView);
+		ImageView exitPinPop = pinDialogView.findViewById(R.id.exitPinPop);
+		MaterialButton pinCheckingBtn = pinDialogView.findViewById(R.id.pinLoginBtn);
+
+		exitPinPop.setOnClickListener(view -> pinDialog.dismiss());
+
+		pinCheckingBtn.setOnClickListener(view -> {
+			String otp = myPinView.getText().toString();
+			// check OTP is correct or not
+			apiInterface.verifyOtp(CheckUserInfo.getUserMsisdn(), otp).enqueue(new retrofit2.Callback<OtpResponse>() {
+				@Override
+				public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
+					if (response.isSuccessful()){
+						if (response.body().getStatus().equals("success")){
+							requestForSdpUrl(); // when OTP is correct
+						} else {
+							Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+						}
+					} else {
+						Toast.makeText(getActivity(), "Please try again later", Toast.LENGTH_SHORT).show();
+					}
+				}
+
+				@Override
+				public void onFailure(Call<OtpResponse> call, Throwable t) {
+					Toast.makeText(getActivity(), "Please try again later", Toast.LENGTH_SHORT).show();
+				}
+			});
+		});
+		pinDialog.show();
+	} // checkOtp
+
 	public void requestForSdpUrl() {
-
 		try {
-
 			pd = new ProgressDialog(getActivity(), ProgressDialog.THEME_HOLO_DARK);
 			pd.setMessage("Requesting...");
 			pd.setIndeterminate(false);
@@ -487,10 +567,9 @@ public class SubscriptionFragment extends Fragment {
 			reqThread.start();
 
 		} catch (Exception ex) {
-
 			Log.d("TAG", "Error Occured");
 		}
-	}
+	} // requestForSdpUrl
 
 	public class RequestThreadSDP extends Thread {
 

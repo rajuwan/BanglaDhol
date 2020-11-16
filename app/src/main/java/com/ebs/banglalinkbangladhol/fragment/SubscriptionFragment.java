@@ -273,16 +273,11 @@ public class SubscriptionFragment extends Fragment {
 					selected_pack = subproducts.get(position).getPack();
 
 					if (subtxt.contains("Subscribe")) {
-
 						if (selected_pack != null) {
-
 							if (!CheckUserInfo.isValidPhoneNumber(CheckUserInfo.getUserMsisdn())) {
-
 								Intent mainIntent = new Intent(getActivity(), BanglaDholSignUpLogInActivity.class);
 								startActivity(mainIntent);
-
 							} else {
-
 								checkForDataUser();
 
 								/*AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
@@ -361,9 +356,7 @@ public class SubscriptionFragment extends Fragment {
 						}
 
 					} else if (subtxt.contains("Unsubscribe")) {
-
 						if (selected_pack != null) {
-
 							AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 									getActivity(), AlertDialog.THEME_HOLO_DARK);
 							alertDialogBuilder.setTitle("UnSubscription");
@@ -416,9 +409,7 @@ public class SubscriptionFragment extends Fragment {
 
 	/* New Data User Checking Starts */
 	public void checkForDataUser() {
-
 		try {
-
 			pd = new ProgressDialog(getActivity(), ProgressDialog.THEME_HOLO_DARK);
 			pd.setMessage("Requesting...");
 			pd.setIndeterminate(false);
@@ -427,34 +418,23 @@ public class SubscriptionFragment extends Fragment {
 
 			RequestThreadDataUser reqThread = new RequestThreadDataUser();
 			reqThread.start();
-
 		} catch (Exception ex) {
-
 			Log.d("TAG", "Error Occured");
 		}
 	}
 
 	public class RequestThreadDataUser extends Thread {
-
 		@Override
 		public void run() {
-
 			synchronized (this) {
-
 				try {
-
 					CheckUserInfo.getUserMsisdnInfo(getActivity());
-
 				} catch (Exception e) {
 
 					Log.d("TAG", "Error Occured");
-
 				}
-
 			}
-
 			datausercheck_handler.sendEmptyMessage(0);
-
 		}
 	}
 
@@ -480,6 +460,7 @@ public class SubscriptionFragment extends Fragment {
 								Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
 							}
 						}
+
 
 						@Override
 						public void onFailure(Call<OtpResponse> call, Throwable t) {

@@ -29,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.ebs.banglalinkbangladhol.R;
 import com.ebs.banglalinkbangladhol.activity.BanglaDholSignUpLogInActivity;
 import com.ebs.banglalinkbangladhol.activity.MainActivity;
+import com.ebs.banglalinkbangladhol.activity.SDPGatewayActivity;
 import com.ebs.banglalinkbangladhol.adapter.DialogAdapter;
 import com.ebs.banglalinkbangladhol.adapter.RecyclerViewDataAdapter;
 import com.ebs.banglalinkbangladhol.bean.AlbumSong;
@@ -189,11 +190,8 @@ public final class ActionClick {
     }
 
     public static void goToPlaylistSingle(FragmentActivity activity, HashMap<String, String> item){
-
         try {
-
             mActivity = activity;
-
             FragmentTransaction ft = mActivity.getSupportFragmentManager().beginTransaction();
             PlaylistDetailsFragment playlistDetailsFragment = new PlaylistDetailsFragment();
             Bundle args = new Bundle();
@@ -216,15 +214,11 @@ public final class ActionClick {
         } catch (Exception e) {
             MyApplication.getInstance().trackException(e);
             Log.d("TAG", "Error Occured TopSlide Banner Image Click");
-
         }
-
     }
 
     public static void requestForPlay(FragmentActivity activity, HashMap<String, String> item, String from) {
-
         try {
-
             mItem = item;
             mActivity = activity;
             fromSection = from;
@@ -249,9 +243,7 @@ public final class ActionClick {
         } catch (Exception e) {
             MyApplication.getInstance().trackException(e);
             Log.d("TAG", "Error Occured requestForPlay");
-
         }
-
     }
 
     public static void requestForAddAllToPlaylist(FragmentActivity activity, String albumName,
@@ -1247,5 +1239,18 @@ public final class ActionClick {
         AlertDialog alert = builder.create();
         alert.show();
     }*/
+
+    public static void goToSdpPaymentActivity(FragmentActivity activity, String webUrl, String pack){
+        try {
+            mActivity = activity;
+            Intent intent = new Intent(mActivity, SDPGatewayActivity.class);
+            intent.putExtra("webUrl", webUrl);
+            intent.putExtra("pack", pack);
+            mActivity.startActivity(intent);
+
+        } catch (Exception ex){
+            Log.d("Error BannerWebActivity", ex.toString());
+        }
+    } // goToSdpPaymentActivity
 
 }

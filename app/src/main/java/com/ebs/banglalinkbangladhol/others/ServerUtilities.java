@@ -624,12 +624,10 @@ public final class ServerUtilities {
 
 	/**
 	 * Sending Request FOR sdp url
-	 *
 	 */
 	public static String requestForSDP(String msisdn, String pack) {
-
 		String val = "";
-		Log.i(TAG, "saving (msisdn = " + msisdn + ")");
+		Log.i(TAG, "saving (msisdn = " + msisdn + " pack= "+pack+")");
 		String serverUrl = HTTPGateway.CHECK_SDP;
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("msisdn", msisdn);
@@ -642,16 +640,13 @@ public final class ServerUtilities {
 		for (int i = 1; i <= MAX_ATTEMPTS; i++) {
 			Log.d(TAG, "Attempt #" + i + " to register");
 			try {
-
 				val = post2(serverUrl, params);
-
 				return val;
-
 			} catch (IOException e) {
 				// Here we are simplifying and retrying on any error; in a real
 				// application, it should retry only on unrecoverable errors
 				// (like HTTP error code 503).
-				Log.e(TAG, "Failed to register on attempt " + i + ":" + e);
+				Log.e(TAG, "Failed to register on attempt " + i + ":" + e.getMessage());
 				if (i == MAX_ATTEMPTS) {
 					break;
 				}
@@ -669,7 +664,6 @@ public final class ServerUtilities {
 			}
 		}
 		return val;
-
 	}
 
 	/**
@@ -680,7 +674,7 @@ public final class ServerUtilities {
 										 String chargestatus, String referenceid) {
 
 		String val = "";
-		Log.i(TAG, "saving (msisdn = " + username + ")");
+		Log.i(TAG, "saving (msisdn = " + username + "serviceid= " + serviceid +")");
 		String serverUrl = HTTPGateway.SUB_STATUS_CHECK;
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("msisdn", username);
@@ -696,11 +690,8 @@ public final class ServerUtilities {
 		for (int i = 1; i <= MAX_ATTEMPTS; i++) {
 			Log.d(TAG, "Attempt #" + i + " to register");
 			try {
-
 				val = post2(serverUrl, params);
-
 				return val;
-
 			} catch (IOException e) {
 				// Here we are simplifying and retrying on any error; in a real
 				// application, it should retry only on unrecoverable errors

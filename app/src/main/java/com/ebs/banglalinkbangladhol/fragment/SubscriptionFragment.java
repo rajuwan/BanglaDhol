@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.BaseAdapter;
@@ -32,6 +33,7 @@ import androidx.core.view.LayoutInflaterFactory;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.chaos.view.PinView;
@@ -40,6 +42,7 @@ import com.ebs.banglalinkbangladhol.activity.BanglaDholSignUpLogInActivity;
 import com.ebs.banglalinkbangladhol.bean.SubJson;
 import com.ebs.banglalinkbangladhol.bean.SubProduct;
 import com.ebs.banglalinkbangladhol.json.SubJsonReader;
+import com.ebs.banglalinkbangladhol.model.ActionClick;
 import com.ebs.banglalinkbangladhol.others.CheckUserInfo;
 import com.ebs.banglalinkbangladhol.others.HTTPGateway;
 import com.ebs.banglalinkbangladhol.others.ServerUtilities;
@@ -47,6 +50,7 @@ import com.ebs.banglalinkbangladhol.revamp.api.ApiInterface;
 import com.ebs.banglalinkbangladhol.revamp.api.RetrofitClient;
 import com.ebs.banglalinkbangladhol.revamp.api.response.OtpResponse;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,7 +68,7 @@ public class SubscriptionFragment extends Fragment {
 	private ProgressDialog pd;
 	private ProgressBar splashbar;
 
-	private String selected_pack, res_sdp;
+	private String selected_pack, selected_pack_name, res_sdp;
 	private List<SubProduct> subproducts;
 	private String subBack = "";
 	private String unsubBack = "";
@@ -101,7 +105,6 @@ public class SubscriptionFragment extends Fragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		Invoke();
-
 		super.onResume();
 	}
 
@@ -128,29 +131,20 @@ public class SubscriptionFragment extends Fragment {
 
 		@Override
 		public void run() {
-
 			Looper.prepare();
-
 			synchronized (this) {
-
 				try {
-
 					CheckUserInfo.getUserMsisdnInfo(getActivity());
 
-					CheckUserInfo.getUserLoginInfo(getActivity(),
-							CheckUserInfo.getUserMsisdn(), CheckUserInfo.getUserPinCode());
+					CheckUserInfo.getUserLoginInfo(getActivity(), CheckUserInfo.getUserMsisdn(), CheckUserInfo.getUserPinCode());
 
-					JSONObject jsonObject = ServerUtilities
-							.requestForSubSchemes(getActivity(), CheckUserInfo.getUserMsisdn());
+					JSONObject jsonObject = ServerUtilities.requestForSubSchemes(getActivity(), CheckUserInfo.getUserMsisdn());
 
 					if (jsonObject != null) {
-
 						subproducts = SubJsonReader.getHome(jsonObject);
-
 					}
 
 				} catch (Exception ex) {
-
 					Log.d("TAG", "Error in search");
 				}
 
@@ -271,6 +265,7 @@ public class SubscriptionFragment extends Fragment {
 
 					String subtxt = holder.sub_txt_button.getText().toString();
 					selected_pack = subproducts.get(position).getPack();
+					selected_pack_name = subproducts.get(position).getName();
 
 					if (subtxt.contains("Subscribe")) {
 						if (selected_pack != null) {
@@ -394,10 +389,7 @@ public class SubscriptionFragment extends Fragment {
 						}
 
 					} else {
-
-						Toast.makeText(getActivity(), "Can't process your request now",
-								Toast.LENGTH_SHORT).show();
-
+						Toast.makeText(getActivity(), "Can't process your request now", Toast.LENGTH_SHORT).show();
 					}
 
 				}
@@ -449,24 +441,31 @@ public class SubscriptionFragment extends Fragment {
 					 * send & check OTP before requestForSdpUrl() calling
 					 * ---------------- OTP  --------------- */
 
-					// requestForSdpUrl(); // to bypass OTP system, execute this fun
+					new MaterialAlertDialogBuilder(getActivity())
+							.setMessage("Are you sure to subscribe this pack?")
+							.setPositiveButton("Yes", (dialogInterface, i) -> {
 
-					apiInterface.sendOtp(CheckUserInfo.getUserMsisdn(), "android").enqueue(new retrofit2.Callback<OtpResponse>() {
-						@Override
-						public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
-							if (response.body().getStatus().equals("success")){
-								sentOtpPopup(response.body().getMessage());
-							} else {
-								Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-							}
-						}
+							//	requestForSdpUrl(); // to bypass OTP system, execute this fun
 
-
-						@Override
-						public void onFailure(Call<OtpResponse> call, Throwable t) {
-							Toast.makeText(getActivity(), "Please try again later", Toast.LENGTH_SHORT).show();
-						}
-					});
+							apiInterface.sendOtp(CheckUserInfo.getUserMsisdn(), "app").enqueue(new retrofit2.Callback<OtpResponse>() {
+								@Override
+								public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
+									if (response.body().getStatus().equals("success")){
+										sentOtpPopup(response.body().getMessage());
+									} else {
+										Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+									}
+								}
+								@Override
+								public void onFailure(Call<OtpResponse> call, Throwable t) {
+									Toast.makeText(getActivity(), "Please try again later", Toast.LENGTH_SHORT).show();
+								}
+							});
+							})
+							.setNegativeButton("No", (dialogInterface, i) -> {
+								dialogInterface.dismiss();
+							})
+							.show();
 				} else {
 					DataRequiredDialog();
 				}
@@ -518,6 +517,7 @@ public class SubscriptionFragment extends Fragment {
 				public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
 					if (response.isSuccessful()){
 						if (response.body().getStatus().equals("success")){
+							pinDialog.cancel();
 							requestForSdpUrl(); // when OTP is correct
 						} else {
 							Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -553,79 +553,60 @@ public class SubscriptionFragment extends Fragment {
 	} // requestForSdpUrl
 
 	public class RequestThreadSDP extends Thread {
-
 		@Override
 		public void run() {
-
 			synchronized (this) {
-
 				try {
-
 					val_sdp = ServerUtilities.requestForSDP(CheckUserInfo.getUserMsisdn(), selected_pack);
-
 				} catch (Exception e) {
-
-					Log.d("TAG", "Error Occured");
-
+					Log.d("TAG", "Error Occured + Error- "+ e.getMessage());
 				}
-
 			}
-
 			reqsdp_handler.sendEmptyMessage(0);
-
 		}
 	}
 
 	Handler reqsdp_handler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
-
 			pd.dismiss();
-
 			try {
-
 				if (val_sdp != null && val_sdp.length() > 10) {
-
 					jsonSdp = HTTPGateway.getSdpCredential(val_sdp);
 
 					for (int i = 0; i < jsonSdp.size(); i++) {
 
 						SubJson tmpData = jsonSdp.get(i);
-
 						sdp_url = tmpData.getSdpUrl();
-
+						Log.e("tag", "SDP Url- " + sdp_url);
 					}
-
 				}
 
 				if(sdp_url != null && sdp_url.length()>10){
-
 					popUp(sdp_url);
+					//openWebView(sdp_url);
 				}
 
 				//Toast.makeText(getActivity(), sdp_url, Toast.LENGTH_LONG).show();
 
 			} catch (Exception e) {
-
-				Log.d("Tag", "Error while get from signup");
-
+				Log.d("Tag", "Error while get from signup. Error- "+ e.getMessage());
 			}
-
 		}
-
 	};
 
+	public void openWebView(String url){
+		ActionClick.goToSdpPaymentActivity(getActivity(), url, selected_pack_name);
+	}
+
 	public void popUp(String url) {
-
 		try {
-
-
 			pd = new ProgressDialog(getActivity(), ProgressDialog.STYLE_HORIZONTAL);
 			pd.setTitle("BanglaDhol");
 			pd.setMessage("Processing request...");
 			pd.setIndeterminate(true);
 			pd.setCancelable(true);
-			//progressDialog.show();
+			//pd.show();
 
 			final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 			alert.setCancelable(true);
@@ -661,35 +642,33 @@ public class SubscriptionFragment extends Fragment {
 			webView.postUrl(url, bytes);*/
 
 			webView.setWebViewClient(new WebViewClient() {
+
 				@Override
-				public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+					String method = request.getMethod();
+					Map<String, String> requestHeaders = request.getRequestHeaders();
+					String url = String.valueOf(request.getUrl());
 
 					try{
-
 						view.loadUrl(url);
-
 						if(url.contains("isChargeSuccess")){
-
 							Uri uri = Uri.parse(url);
 							Set<String> paramNames = uri.getQueryParameterNames();
 							for (String key: paramNames) {
 
 								if(key.contains("serviceid")){
-
 									serviceid = uri.getQueryParameter(key);
-
+									Log.e("tag", "serviceid" + serviceid);
 								}
 
 								if(key.contains("isChargeSuccess")){
-
 									isChargeSuccess = uri.getQueryParameter(key);
-
+									Log.e("tag", "isChargeSuccess" + isChargeSuccess);
 								}
 
 								if(key.contains("referenceId")){
-
 									referenceId = uri.getQueryParameter(key);
-
+									Log.e("tag", "referenceId- "+ referenceId );
 								}
 
 							}
@@ -703,12 +682,50 @@ public class SubscriptionFragment extends Fragment {
 
 					} catch (Exception ex){
 						Log.d("web redirect error", ex.toString());
+					}
+					return true;
+				}
 
+				/*@Override
+				public boolean shouldOverrideUrlLoading(WebView view, String url) {
+					try{
+						view.loadUrl(url);
+						if(url.contains("isChargeSuccess")){
+							Uri uri = Uri.parse(url);
+							Set<String> paramNames = uri.getQueryParameterNames();
+							for (String key: paramNames) {
+
+								if(key.contains("serviceid")){
+									serviceid = uri.getQueryParameter(key);
+									Log.e("tag", "serviceid" + serviceid);
+								}
+
+								if(key.contains("isChargeSuccess")){
+									isChargeSuccess = uri.getQueryParameter(key);
+									Log.e("tag", "isChargeSuccess" + isChargeSuccess);
+								}
+
+								if(key.contains("referenceId")){
+									referenceId = uri.getQueryParameter(key);
+									Log.e("tag", "referenceId- "+ referenceId );
+								}
+
+							}
+
+							postSubStatus(serviceid, isChargeSuccess, referenceId);
+							alertDialog.dismiss();
+
+						} else {
+							alertDialog.dismiss();
+						}
+
+					} catch (Exception ex){
+						Log.d("web redirect error", ex.toString());
 					}
 
 					return true;
 				}
-
+*/
 				@Override
 				public void onPageStarted(WebView view, String url, Bitmap favicon) {
 					super.onPageStarted(view, url, favicon);
@@ -735,68 +752,47 @@ public class SubscriptionFragment extends Fragment {
 	}
 
 	private void postSubStatus(final String serviceid, final String chargestatus, final String referenceid) {
-
 		try {
-
 			mRegisterTask = new AsyncTask<Void, Void, String>() {
-
 				@Override
 				protected String doInBackground(Void... params) {
 					// Register on our server
 					// On server creates a new user
-
 					try {
-
 						res_sdp = ServerUtilities.updateSubStatus(CheckUserInfo.getUserMsisdn(),
 								serviceid, chargestatus, referenceid);
 
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-
 					return res_sdp;
 				}
 
 				@Override
 				protected void onPostExecute(String result) {
-
 					String res = "";
-
 					if (result != null && result.length() > 5) {
-
 						try {
-
 							JSONObject m_obj = new JSONObject(result);
-
 							res  = m_obj.getString("result");
-
 							if(res.contains("success")){
-
 								Invoke();
-
 							}
-
 							userStatus.setText(m_obj.getString("response"));
-
 							Toast.makeText(getActivity(), m_obj.getString("response"), Toast.LENGTH_LONG).show();
-
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-
 					}
 					mRegisterTask = null;
 				}
-
 			};
-
 			mRegisterTask.execute(null, null, null);
-
 		} catch (Exception ex) {
 			Log.d("TAG", "Error in main thread");
 		}
-
 	}
+
 
 	public void DataRequiredDialog(){
 

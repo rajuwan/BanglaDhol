@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="?android:selectableItemBackground"
     android:orientation="vertical"
     android:padding="5dp">
@@ -25,18 +26,18 @@
             android:textSize="@dimen/home_title_size"
             android:textStyle="bold" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMore"
             android:layout_width="wrap_content"
             android:layout_height="40dip"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:theme="@style/MyButton"
             android:visibility="gone"
+            tools:visibility="visible"
             android:textAllCaps="false"
             android:text="View All"
-            android:textColor="#FFF" />
+             />
 
 
     </RelativeLayout>

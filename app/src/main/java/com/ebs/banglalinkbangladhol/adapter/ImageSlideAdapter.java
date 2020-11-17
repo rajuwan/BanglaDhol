@@ -67,11 +67,8 @@ public class ImageSlideAdapter extends PagerAdapter {
 
 		ImageView mImageView = (ImageView) view.findViewById(R.id.image_display);
 		mImageView.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				
-								
 				FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
 
 				AlbumDetailsFragment albumDetailsFragment = new AlbumDetailsFragment();
@@ -99,6 +96,7 @@ public class ImageSlideAdapter extends PagerAdapter {
 		container.addView(view);
 		return view;
 	}
+
 
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {

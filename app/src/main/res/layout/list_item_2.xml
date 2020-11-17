@@ -34,7 +34,7 @@
             android:theme="@style/MyButton"
             android:textAllCaps="false"
             android:text="View All"
-            android:textColor="#FFF" />
+            />
 
     </RelativeLayout>
 
